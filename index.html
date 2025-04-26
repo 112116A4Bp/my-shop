@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tienda de Productos de Confianza</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+        header { background: #4CAF50; color: white; padding: 1rem; text-align: center; position: relative; }
+        .cart { position: absolute; top: 1rem; right: 1rem; background: white; color: #4CAF50; padding: 0.5rem 1rem; border-radius: 20px; font-weight: bold; }
+        .filtros { text-align: center; margin: 1rem 0; }
+        .filtros button { margin: 0.5rem; padding: 0.5rem 1rem; background: #4CAF50; border: none; color: white; border-radius: 5px; cursor: pointer; }
+        .filtros button:hover { background: #45a049; }
+        .productos { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; padding: 2rem; }
+        .producto { background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
+        .producto img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
+        .producto h3 { margin: 0.5rem 0; }
+        .producto p { color: #555; }
+        .producto button { margin-top: 0.5rem; background: #4CAF50; color: white; padding: 0.5rem 1rem; border-radius: 5px; border: none; cursor: pointer; }
+        .producto button:hover { background: #45a049; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Productos de Empresas de Confianza</h1>
+    <div class="cart">Carrito: <span id="cart-count">0</span></div>
+</header>
+
+<div class="filtros">
+    <button onclick="filtrar('todos')">Todos</button>
+    <button onclick="filtrar('tecnologia')">Tecnología</button>
+    <button onclick="filtrar('ropa')">Ropa</button>
+    <button onclick="filtrar('hogar')">Hogar</button>
+</div>
+
+<section class="productos" id="productos">
+    <div class="producto" data-categoria="tecnologia">
+        <img src="https://via.placeholder.com/300x200" alt="Producto 1">
+        <h3>Producto Tecnología 1</h3>
+        <p>Un excelente dispositivo para el hogar.</p>
+        <p><strong>$99.99</strong></p>
+        <button onclick="agregarAlCarrito()">Agregar al Carrito</button>
+    </div>
+
+    <div class="producto" data-categoria="ropa">
+        <img src="https://via.placeholder.com/300x200" alt="Producto 2">
+        <h3>Producto Ropa 1</h3>
+        <p>Moda de última tendencia.</p>
+        <p><strong>$49.99</strong></p>
+        <button onclick="agregarAlCarrito()">Agregar al Carrito</button>
+    </div>
+
+    <div class="producto" data-categoria="hogar">
+        <img src="https://via.placeholder.com/300x200" alt="Producto 3">
+        <h3>Producto Hogar 1</h3>
+        <p>Ideal para decorar tu casa.</p>
+        <p><strong>$29.99</strong></p>
+        <button onclick="agregarAlCarrito()">Agregar al Carrito</button>
+    </div>
+</section>
+
+<script>
+    let carrito = 0;
+
+    function agregarAlCarrito() {
+        carrito++;
+        document.getElementById('cart-count').innerText = carrito;
+    }
+
+    function filtrar(categoria) {
+        const productos = document.querySelectorAll('.producto');
+        productos.forEach(producto => {
+            if (categoria === 'todos' || producto.getAttribute('data-categoria') === categoria) {
+                producto.style.display = 'block';
+            } else {
+                producto.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
